@@ -22,6 +22,7 @@ class Bird(pygame.sprite.Sprite):
 
         self.mask = pygame.mask.from_surface(self.image)
         self.flap = 0
+        self.is_alive = False
 
         super().__init__(*groups)
 
@@ -34,9 +35,10 @@ class Bird(pygame.sprite.Sprite):
 
         if self.rect.x < 50:
             self.rect.x += 2
+            self.is_alive = True
 
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.is_alive:
             self.flap = 0
             self.flap -= 7
             assets.play_audio("wing")
@@ -45,6 +47,7 @@ class Bird(pygame.sprite.Sprite):
         for sprite in sprites:
             if ((type(sprite) is Column or type(sprite) is Floor) and sprite.mask.overlap(self.mask,
             (self.rect.x - sprite.rect.x, self.rect.y - sprite.rect.y)) or self.rect.bottom < 0):
+                self.is_alive = False
                 return True
 
         return False

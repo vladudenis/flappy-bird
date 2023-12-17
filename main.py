@@ -48,7 +48,7 @@ while running:
                 pygame.time.set_timer(column_create_event, 3000)
             if game_over and (event.key == pygame.K_ESCAPE or event.key == pygame.K_SPACE):
                 game_over = False
-                game_Started = False
+                game_started = False
                 sprites.empty()
                 bird, game_start_msg, score = create_sprites()
         if not game_over:
