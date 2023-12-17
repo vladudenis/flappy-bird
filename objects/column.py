@@ -1,9 +1,9 @@
 import random
+import assets
+import configs
 
 import pygame.sprite
 
-import assets
-import configs
 from layer import Layer
 
 
